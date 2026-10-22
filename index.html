@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link id="google-fonts" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Config for Modern View -->
+    <!-- Tailwind Config -->
     <script>
         if (window.tailwind) {
             tailwind.config = {
@@ -48,119 +48,144 @@
         }
     </script>
 
-    <!-- Unified Styles -->
+    <!-- Unified & Legacy Compatible Styles -->
     <style id="main-styles">
-        /* MODERN GLASS STYLES */
+        /* Base Glass Styles for Modern Devices */
         .glass-panel {
-            background: rgba(30, 41, 59, 0.65);
-            backdrop-filter: blur(16px);
+            background: #1e293b;
+            background: rgba(30, 41, 59, 0.85);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(8px);
+            background: #1e293b;
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-card:hover {
             border-color: rgba(42, 171, 238, 0.4);
-            transform: translateY(-2px);
             box-shadow: 0 10px 25px -5px rgba(0, 136, 204, 0.2);
         }
         .accent-glow {
-            box-shadow: 0 0 50px -10px rgba(0, 136, 204, 0.4);
+            box-shadow: 0 0 30px rgba(0, 120, 215, 0.3);
         }
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0F172A; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0088CC; }
 
-        /* METRO / WINDOWS 10 MOBILE OVERRIDE STYLES (Enforced only on W10M / Old Edge) */
+        /* Mockup Phone Custom Layout Rules */
+        .phone-frame-container {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .phone-shell {
+            background-color: #121212;
+            border: 3px solid #0078D7;
+            border-radius: 28px;
+            padding: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .phone-screen {
+            background-color: #0E1621;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #222e3c;
+            display: flex;
+            flex-direction: column;
+            height: 480px;
+        }
+
+        /* Responsive & Legacy Overrides for Windows 10 Mobile (Edge HTML) */
         body.metro-mode {
             background-color: #000000 !important;
             color: #ffffff !important;
-            font-family: 'Segoe UI', 'Segoe WP', 'Helvetica Neue', sans-serif !important;
+            font-family: 'Segoe UI', 'Segoe WP', sans-serif !important;
             margin: 0;
             padding: 0;
         }
 
-        body.metro-mode * {
-            border-radius: 0px !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            text-shadow: none !important;
-        }
-
         body.metro-mode header {
-            background: #1f1f1f !important;
+            background-color: #1f1f1f !important;
             border-bottom: 2px solid #0078D7 !important;
-            position: relative !important;
         }
 
-        body.metro-mode .glass-panel,
         body.metro-mode .glass-card {
-            background: #111111 !important;
-            border: 1px solid #333333 !important;
-        }
-
-        body.metro-mode .metro-accent-bg {
-            background-color: #0078D7 !important;
-            color: #ffffff !important;
+            background-color: #151515 !important;
+            border: 1px solid #2a2a2a !important;
+            border-left: 4px solid #0078D7 !important;
+            border-radius: 0px !important;
+            margin-bottom: 12px;
         }
 
         body.metro-mode .metro-btn {
-            background: #0078D7 !important;
+            background-color: #0078D7 !important;
             color: #ffffff !important;
-            border: 2px solid #0078D7 !important;
-            padding: 10px 20px !important;
-            font-weight: 600 !important;
+            border: 1px solid #0078D7 !important;
+            padding: 12px 20px !important;
+            font-weight: bold !important;
             display: inline-block !important;
             text-decoration: none !important;
             text-align: center !important;
             text-transform: uppercase !important;
-            letter-spacing: 0.5px !important;
+            border-radius: 0px !important;
         }
 
-        body.metro-mode .metro-btn:hover,
         body.metro-mode .metro-btn:active {
-            background: #000000 !important;
-            color: #ffffff !important;
-            border-color: #ffffff !important;
-        }
-
-        body.metro-mode .phone-frame {
-            border: 4px solid #333333 !important;
-            background: #000000 !important;
-            padding: 8px !important;
+            background-color: #ffffff !important;
+            color: #000000 !important;
         }
 
         body.metro-mode .glow-bg {
             display: none !important;
         }
+
+        /* Custom Speech Bubble Styles for W10M Compat */
+        .chat-bubble-left {
+            background-color: #182533;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border-top-left-radius: 2px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        .chat-bubble-right {
+            background-color: #2b5278;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border-top-right-radius: 2px;
+            max-width: 85%;
+            margin-left: auto;
+            word-wrap: break-word;
+        }
     </style>
 </head>
-<body class="bg-[#0F172A] text-slate-100 font-sans antialiased selection:bg-tg-blue selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+<body class="bg-[#0F172A] text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between overflow-x-hidden">
 
     <!-- Glowing Background Elements -->
     <div class="glow-bg fixed top-0 left-1/4 w-96 h-96 bg-tg-blue/20 rounded-full blur-[120px] pointer-events-none -z-10"></div>
     <div class="glow-bg fixed bottom-1/3 right-1/4 w-96 h-96 bg-sky-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
     <!-- Header / Navigation -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
+    <header class="sticky top-0 z-50 glass-panel">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-tg-blue to-sky-400 flex items-center justify-center text-white shadow-lg shadow-tg-blue/30 font-bold text-xl metro-accent-bg">
-                    <i data-lucide="send" class="w-5 h-5 -ml-0.5"></i>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-tg-blue to-sky-400 flex items-center justify-center text-white font-bold text-xl style-accent-bg">
+                    <i data-lucide="send" class="w-5 h-5"></i>
                 </div>
                 <div>
-                    <span class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">Custogram</span>
-                    <span id="deviceBadge" class="hidden text-[10px] px-2 py-0.5 ml-2 bg-blue-600 text-white uppercase font-mono tracking-wider">Windows 10 Mobile Edge</span>
+                    <span class="text-xl font-bold tracking-tight text-white">Custogram</span>
+                    <span id="deviceBadge" class="hidden text-[10px] px-2 py-0.5 ml-2 bg-blue-600 text-white font-mono uppercase">W10M Optimised</span>
                 </div>
             </div>
 
-            <!-- Desktop Nav -->
+            <!-- Navigation Links -->
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <a href="#features" class="hover:text-tg-accent transition-colors">Возможности</a>
                 <a href="#customizer" class="hover:text-tg-accent transition-colors">Кастомизация</a>
@@ -170,7 +195,7 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="./custogram.appxbundle" id="headerDownloadBtn" class="metro-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-tg-blue to-sky-500 hover:from-sky-500 hover:to-tg-blue text-white font-medium text-sm transition-all duration-300 shadow-md flex items-center gap-2">
+                <a href="./custogram.appxbundle" id="headerDownloadBtn" class="metro-btn px-5 py-2.5 rounded-xl bg-gradient-to-r from-tg-blue to-sky-500 text-white font-medium text-sm flex items-center gap-2">
                     <i data-lucide="download" class="w-4 h-4"></i>
                     <span>Скачать</span>
                 </a>
@@ -179,32 +204,32 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-10 pb-16 md:pt-20 md:pb-32 overflow-hidden">
+    <section class="relative pt-8 pb-16 md:pt-16 md:pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 
                 <!-- Left Column: Info & CTA -->
                 <div class="lg:col-span-7 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-medium text-tg-accent mb-6 animate-pulse-slow">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs font-medium text-tg-accent mb-6">
                         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                         <span id="heroBadge">Мобильный клиент с кастомизацией</span>
                     </div>
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-tg-accent">Custogram</span> — настраиваемый клиент Telegram
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+                        <span class="text-sky-400">Custogram</span> — настраиваемый клиент Telegram
                     </h1>
 
-                    <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    <p class="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                         Удобный Telegram-клиент с широкими возможностями персонализации интерфейса. Изменяйте цвета, шрифты и закругления под свой вкус и оставайтесь на связи.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
-                        <a href="./custogram.appxbundle" id="mainDownloadBtn" class="metro-btn w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-tg-blue via-sky-500 to-tg-darkBlue text-white font-bold text-base transition-all duration-300 shadow-xl flex items-center justify-center gap-3 group">
-                            <i data-lucide="download" class="w-5 h-5 group-hover:translate-y-0.5 transition-transform"></i>
+                        <a href="./custogram.appxbundle" id="mainDownloadBtn" class="metro-btn w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-tg-blue to-tg-darkBlue text-white font-bold text-base flex items-center justify-center gap-3">
+                            <i data-lucide="download" class="w-5 h-5"></i>
                             <span>Скачать Custogram</span>
                         </a>
 
-                        <div class="flex items-center gap-2 px-4 py-3 rounded-2xl bg-slate-800/50 border border-slate-700/60 text-xs text-slate-300">
+                        <div class="flex items-center gap-2 px-4 py-3 rounded-2xl bg-slate-800/50 border border-slate-700 text-xs text-slate-300">
                             <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
                             <span>Стабильная сборка W10M</span>
                         </div>
@@ -226,103 +251,83 @@
                     </div>
                 </div>
 
-                <!-- Right Column: W10M Phone Mockup -->
+                <!-- Right Column: W10M Phone Mockup Container -->
                 <div class="lg:col-span-5 flex justify-center">
-                    <div class="relative w-full max-w-[320px] animate-float">
-                        <!-- Phone Frame -->
-                        <div class="phone-frame relative rounded-[32px] bg-[#1a1a1a] p-3 shadow-2xl border-4 border-[#333] accent-glow">
+                    <div class="phone-frame-container">
+                        <!-- Outer Phone Shell -->
+                        <div class="phone-shell accent-glow">
                             <!-- Status Bar -->
-                            <div class="flex justify-between items-center px-4 py-1 text-[10px] text-slate-300">
-                                <div class="flex items-center gap-1.5">
-                                    <i data-lucide="signal" class="w-3 h-3"></i>
-                                    <i data-lucide="wifi" class="w-3 h-3"></i>
+                            <div class="flex justify-between items-center px-3 py-1 text-[10px] text-slate-400 font-mono">
+                                <div class="flex items-center gap-1">
+                                    <span>LTE</span>
+                                    <span>100%</span>
                                 </div>
-                                <div class="font-semibold">14:03</div>
+                                <div class="font-bold">14:03</div>
                             </div>
                             
-                            <!-- Phone Screen -->
-                            <div class="rounded-[20px] overflow-hidden bg-[#0e1621] border border-slate-800 aspect-[9/16] flex flex-col justify-between relative shadow-inner">
+                            <!-- Phone Inner Screen -->
+                            <div class="phone-screen">
                                 
                                 <!-- App Header Mockup -->
-                                <div id="mockupHeader" class="bg-[#17212b] px-3 py-2.5 text-white flex items-center justify-between shadow-md transition-colors duration-300 border-b border-slate-800">
-                                    <div class="flex items-center gap-2.5">
+                                <div id="mockupHeader" class="bg-[#17212b] px-3 py-2.5 text-white flex items-center justify-between border-b border-slate-800 shrink-0">
+                                    <div class="flex items-center gap-2">
                                         <i data-lucide="arrow-left" class="w-4 h-4 text-slate-300"></i>
-                                        <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center font-bold text-[10px] overflow-hidden border border-blue-400">
-                                            <div class="w-full h-full bg-gradient-to-tr from-sky-600 to-blue-500 flex items-center justify-center text-white font-bold text-xs">C</div>
-                                        </div>
-                                        <div class="truncate max-w-[170px]">
+                                        <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs text-white">C</div>
+                                        <div class="truncate max-w-[150px]">
                                             <div class="font-semibold text-xs truncate">Custogram Chat</div>
-                                            <div class="text-[9px] text-slate-400">в сети</div>
+                                            <div class="text-[9px] text-emerald-400">в сети</div>
                                         </div>
                                     </div>
                                     <i data-lucide="more-vertical" class="w-4 h-4 text-slate-400"></i>
                                 </div>
 
                                 <!-- Chat Body Mockup -->
-                                <div class="p-2.5 space-y-2.5 flex-1 overflow-y-auto text-[11px] bg-[#0e1621] font-sans">
+                                <div id="mockupChatBody" class="p-3 space-y-3 flex-1 overflow-y-auto text-[11px] bg-[#0e1621]">
                                     <!-- Received Msg 1 -->
-                                    <div class="flex flex-col items-start max-w-[85%]">
-                                        <div id="mockupBubbleLeft" class="bg-[#182533] text-slate-100 p-2 rounded-lg rounded-tl-none shadow-sm transition-all duration-300">
+                                    <div class="flex flex-col items-start">
+                                        <div id="mockupBubbleLeft1" class="chat-bubble-left">
                                             Привет! Вышла новая версия клиентика 🚀
                                         </div>
-                                        <span class="text-[8px] text-slate-500 mt-0.5 ml-0.5">14:01</span>
+                                        <span class="text-[8px] text-slate-500 mt-1 ml-1">14:01</span>
                                     </div>
 
                                     <!-- Sent Msg 1 -->
-                                    <div class="flex flex-col items-end max-w-[90%] ml-auto">
-                                        <div id="mockupBubbleRight" class="bg-[#2b5278] text-white p-2 rounded-lg rounded-tr-none shadow-sm transition-all duration-300">
-                                            Отлично! Настройки акцентного цвета теперь работают мгновенно ✨
+                                    <div class="flex flex-col items-end">
+                                        <div id="mockupBubbleRight1" class="chat-bubble-right">
+                                            Отлично! Настройки акцентного цвета теперь работают отлично ✨
                                         </div>
-                                        <span class="text-[8px] text-slate-300 mt-0.5 mr-0.5 flex items-center gap-0.5">
-                                            14:02 <i data-lucide="check-check" class="w-3 h-3 text-sky-400"></i>
-                                        </span>
+                                        <span class="text-[8px] text-slate-400 mt-1 mr-1">14:02 ✓✓</span>
                                     </div>
 
-                                    <!-- Received Msg with Reply -->
-                                    <div class="flex flex-col items-start max-w-[90%]">
-                                        <div class="bg-[#182533] text-slate-100 p-2 rounded-lg rounded-tl-none shadow-sm transition-all duration-300 w-full">
-                                            <div class="border-l-2 border-sky-400 pl-1.5 mb-1 bg-black/20 py-0.5 rounded-r">
-                                                <div class="text-[9px] text-sky-400 font-semibold">Custogram Chat</div>
-                                                <div class="text-[9px] text-slate-300 truncate">Отлично! Настройки акцентного цвета...</div>
+                                    <!-- Received Msg 2 -->
+                                    <div class="flex flex-col items-start">
+                                        <div id="mockupBubbleLeft2" class="chat-bubble-left">
+                                            <div class="border-l-2 border-sky-400 pl-1.5 mb-1 bg-black/30 py-0.5 text-[9px] text-slate-300">
+                                                <div class="text-sky-400 font-bold">Custogram Chat</div>
+                                                <div class="truncate">Отлично! Настройки акцентного цвета...</div>
                                             </div>
-                                            Да, выглядит очень стильно на W10M!
+                                            Да, теперь макет выглядит красиво даже на Windows 10 Mobile!
                                         </div>
-                                        <span class="text-[8px] text-slate-500 mt-0.5 ml-0.5">14:03</span>
-                                    </div>
-
-                                    <!-- Sent Voice Note -->
-                                    <div class="flex flex-col items-end max-w-[85%] ml-auto">
-                                        <div class="bg-[#2b5278] text-white p-2 rounded-lg rounded-tr-none shadow-sm transition-all duration-300 flex items-center gap-2.5 w-full">
-                                            <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-white shrink-0">
-                                                <i data-lucide="play" class="w-3 h-3 fill-current ml-0.5"></i>
-                                            </div>
-                                            <div class="h-1 bg-white/30 flex-1 rounded-full overflow-hidden">
-                                                <div class="w-2/3 h-full bg-white"></div>
-                                            </div>
-                                            <span class="text-[8px] text-slate-200">0:12</span>
-                                        </div>
-                                        <span class="text-[8px] text-slate-300 mt-0.5 mr-0.5 flex items-center gap-0.5">
-                                            14:03 <i data-lucide="check-check" class="w-3 h-3 text-sky-400"></i>
-                                        </span>
+                                        <span class="text-[8px] text-slate-500 mt-1 ml-1">14:03</span>
                                     </div>
                                 </div>
 
                                 <!-- Input Bar Mockup -->
-                                <div class="p-2 bg-[#17212b] border-t border-slate-800 flex items-center gap-2">
-                                    <i data-lucide="paperclip" class="w-4 h-4 text-slate-400 rotate-45 shrink-0"></i>
+                                <div class="p-2 bg-[#17212b] border-t border-slate-800 flex items-center gap-2 shrink-0">
+                                    <i data-lucide="paperclip" class="w-4 h-4 text-slate-400"></i>
                                     <div class="flex-1 bg-[#0e1621] rounded px-3 py-1.5 text-[10px] text-slate-400 border border-slate-800">
                                         <span>Сообщение...</span>
                                     </div>
-                                    <div id="mockupSendBtn" class="w-8 h-8 bg-[#2b5278] flex items-center justify-center text-white shrink-0 rounded transition-colors duration-300">
-                                        <i data-lucide="mic" class="w-4 h-4"></i>
+                                    <div id="mockupSendBtn" class="w-7 h-7 bg-[#2b5278] flex items-center justify-center text-white rounded shrink-0">
+                                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
                                     </div>
                                 </div>
 
-                                <!-- W10M Hardware Bottom Navigation Bar -->
-                                <div class="h-7 bg-black flex items-center justify-around px-8 border-t border-slate-900">
-                                    <div class="w-2.5 h-2.5 border-b-2 border-l-2 border-slate-400 rotate-45"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full border-2 border-slate-400"></div>
-                                    <div class="w-3 h-3 border-2 border-slate-400 rotate-45"></div>
+                                <!-- W10M Navigation Bar Mockup -->
+                                <div class="h-6 bg-black flex items-center justify-around text-slate-400 text-xs shrink-0 border-t border-slate-900 font-bold">
+                                    <span>◀</span>
+                                    <span>◉</span>
+                                    <span>🔍</span>
                                 </div>
 
                             </div>
@@ -335,19 +340,19 @@
     </section>
 
     <!-- Customization Playground Section -->
-    <section id="customizer" class="py-16 bg-slate-900/50 border-y border-slate-800">
+    <section id="customizer" class="py-12 bg-slate-900/60 border-y border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="text-center max-w-3xl mx-auto mb-10">
                 <span class="text-xs font-bold uppercase tracking-wider text-tg-accent bg-tg-blue/10 px-3 py-1 rounded-full border border-tg-blue/20">Симулятор интерфейса</span>
-                <h2 class="text-3xl font-extrabold text-white mt-3">Попробуйте кастомизацию Custogram</h2>
-                <p class="text-slate-400 text-sm mt-2">Экспериментируйте с настройками ниже — изменения сразу видны на макете смартфона!</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3">Попробуйте кастомизацию Custogram</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2">Экспериментируйте с настройками ниже — изменения сразу видны на макете смартфона!</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Color Control -->
-                <div class="glass-card p-6 rounded-2xl">
+                <div class="glass-card p-5">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="p-2 rounded-lg bg-tg-blue/20 text-tg-accent metro-accent-bg">
+                        <div class="p-2 rounded-lg bg-tg-blue/20 text-tg-accent">
                             <i data-lucide="palette" class="w-5 h-5"></i>
                         </div>
                         <div>
@@ -355,18 +360,18 @@
                             <p class="text-xs text-slate-400">Выбор акцентного цвета</p>
                         </div>
                     </div>
-                    <div class="flex gap-3">
-                        <button onclick="setThemeColor('#17212b', '#2b5278')" class="w-8 h-8 bg-[#2b5278] border-2 border-white/80 hover:scale-110 transition-transform shadow" title="Dark Telegram"></button>
-                        <button onclick="setThemeColor('#0078D7', '#0078D7')" class="w-8 h-8 bg-[#0078D7] border-2 border-transparent hover:scale-110 transition-transform shadow" title="Windows Blue"></button>
-                        <button onclick="setThemeColor('#0f2c23', '#10B981')" class="w-8 h-8 bg-[#10B981] border-2 border-transparent hover:scale-110 transition-transform shadow" title="Emerald"></button>
-                        <button onclick="setThemeColor('#2a1b3d', '#8B5CF6')" class="w-8 h-8 bg-[#8B5CF6] border-2 border-transparent hover:scale-110 transition-transform shadow" title="Purple"></button>
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="setThemeColor('#17212b', '#2b5278')" class="w-8 h-8 rounded-full bg-[#2b5278] border-2 border-white/80" title="Dark Telegram"></button>
+                        <button onclick="setThemeColor('#0078D7', '#0078D7')" class="w-8 h-8 rounded-full bg-[#0078D7] border-2 border-transparent" title="Windows Blue"></button>
+                        <button onclick="setThemeColor('#0f2c23', '#10B981')" class="w-8 h-8 rounded-full bg-[#10B981] border-2 border-transparent" title="Emerald"></button>
+                        <button onclick="setThemeColor('#2a1b3d', '#8B5CF6')" class="w-8 h-8 rounded-full bg-[#8B5CF6] border-2 border-transparent" title="Purple"></button>
                     </div>
                 </div>
 
                 <!-- Font Size Control -->
-                <div class="glass-card p-6 rounded-2xl">
+                <div class="glass-card p-5">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="p-2 rounded-lg bg-tg-blue/20 text-tg-accent metro-accent-bg">
+                        <div class="p-2 rounded-lg bg-tg-blue/20 text-tg-accent">
                             <i data-lucide="type" class="w-5 h-5"></i>
                         </div>
                         <div>
@@ -374,7 +379,7 @@
                             <p class="text-xs text-slate-400">Масштабирование чата</p>
                         </div>
                     </div>
-                    <input type="range" id="fontSizeSlider" min="9" max="15" value="11" class="w-full accent-tg-blue bg-slate-700 h-2 rounded-lg cursor-pointer">
+                    <input type="range" id="fontSizeSlider" min="9" max="15" value="11" class="w-full accent-tg-blue bg-slate-700 h-2 rounded cursor-pointer">
                     <div class="flex justify-between text-[11px] text-slate-400 mt-2 font-mono">
                         <span>Мелкий (9px)</span>
                         <span id="fontVal">11px</span>
@@ -383,9 +388,9 @@
                 </div>
 
                 <!-- Bubble Rounding Control -->
-                <div class="glass-card p-6 rounded-2xl">
+                <div class="glass-card p-5">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="p-2 rounded-lg bg-tg-blue/20 text-tg-accent metro-accent-bg">
+                        <div class="p-2 rounded-lg bg-tg-blue/20 text-tg-accent">
                             <i data-lucide="square" class="w-5 h-5"></i>
                         </div>
                         <div>
@@ -393,10 +398,10 @@
                             <p class="text-xs text-slate-400">Стиль сообщений</p>
                         </div>
                     </div>
-                    <input type="range" id="radiusSlider" min="0" max="16" value="8" class="w-full accent-tg-blue bg-slate-700 h-2 rounded-lg cursor-pointer">
+                    <input type="range" id="radiusSlider" min="0" max="16" value="12" class="w-full accent-tg-blue bg-slate-700 h-2 rounded cursor-pointer">
                     <div class="flex justify-between text-[11px] text-slate-400 mt-2 font-mono">
                         <span>Metro (0px)</span>
-                        <span id="radiusVal">8px</span>
+                        <span id="radiusVal">12px</span>
                         <span>Скругленные (16px)</span>
                     </div>
                 </div>
@@ -405,9 +410,9 @@
     </section>
 
     <!-- Main Features Section -->
-    <section id="features" class="py-20 relative">
+    <section id="features" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-12">
                 <span class="text-xs font-bold uppercase tracking-wider text-tg-accent">Обзор функционала</span>
                 <h2 class="text-3xl font-extrabold text-white mt-2">Возможности Custogram</h2>
                 <p class="text-slate-400 text-sm mt-2">Подробный статус реализованных функций и планов разработки</p>
@@ -415,9 +420,9 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Already Implemented -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <div class="glass-card p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 metro-accent-bg">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
                             <i data-lucide="check-circle" class="w-5 h-5"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Уже есть</h3>
@@ -431,13 +436,13 @@
                             <li class="flex items-center gap-2"><i data-lucide="pin" class="w-3.5 h-3.5 text-emerald-400 shrink-0"></i> Закрепление и архив</li>
                         </ul>
                     </div>
-                    <div class="mt-6 pt-3 border-t border-slate-800 text-[11px] text-emerald-400/80 font-medium">Работает стабильно</div>
+                    <div class="mt-6 pt-3 border-t border-slate-800 text-[11px] text-emerald-400 font-medium">Работает стабильно</div>
                 </div>
 
                 <!-- In Progress -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <div class="glass-card p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-4 metro-accent-bg">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-4">
                             <i data-lucide="alert-triangle" class="w-5 h-5"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Плохо работает</h3>
@@ -448,13 +453,13 @@
                             <li class="flex items-center gap-2"><i data-lucide="radio" class="w-3.5 h-3.5 text-amber-400 shrink-0"></i> Публичные каналы</li>
                         </ul>
                     </div>
-                    <div class="mt-6 pt-3 border-t border-slate-800 text-[11px] text-amber-400/80 font-medium">В процессе улучшения</div>
+                    <div class="mt-6 pt-3 border-t border-slate-800 text-[11px] text-amber-400 font-medium">В процессе улучшения</div>
                 </div>
 
                 <!-- UI Settings -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <div class="glass-card p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-xl bg-tg-blue/10 border border-tg-blue/20 text-tg-accent flex items-center justify-center mb-4 metro-accent-bg">
+                        <div class="w-10 h-10 rounded-xl bg-tg-blue/10 border border-tg-blue/20 text-tg-accent flex items-center justify-center mb-4">
                             <i data-lucide="sliders" class="w-5 h-5"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Из настроек</h3>
@@ -471,9 +476,9 @@
                 </div>
 
                 <!-- Coming Soon -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <div class="glass-card p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4 metro-accent-bg">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4">
                             <i data-lucide="rocket" class="w-5 h-5"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Скоро</h3>
@@ -484,35 +489,35 @@
                             <li class="flex items-center gap-2"><i data-lucide="bug" class="w-3.5 h-3.5 text-purple-400 shrink-0"></i> Исправление багов</li>
                         </ul>
                     </div>
-                    <div class="mt-6 pt-3 border-t border-slate-800 text-[11px] text-purple-400/80 font-medium">В разработке</div>
+                    <div class="mt-6 pt-3 border-t border-slate-800 text-[11px] text-purple-400 font-medium">В разработке</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- System Requirements Section -->
-    <section id="requirements" class="py-16 bg-slate-900/40">
+    <section id="requirements" class="py-12 bg-slate-900/40">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="glass-panel rounded-3xl p-8 border border-slate-700/60 relative overflow-hidden">
+            <div class="glass-card p-6 sm:p-8">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="flex items-center gap-5">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-tg-blue to-blue-600 flex items-center justify-center text-white shrink-0 shadow-lg metro-accent-bg">
-                            <i data-lucide="cpu" class="w-7 h-7"></i>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-tg-blue flex items-center justify-center text-white shrink-0">
+                            <i data-lucide="cpu" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">Системные требования</h3>
-                            <p class="text-xs text-slate-400 mt-1">Оптимизировано специально для мобильной платформы Microsoft</p>
+                            <h3 class="text-lg font-bold text-white">Системные требования</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Оптимизировано специально для мобильной платформы Microsoft</p>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4 w-full md:w-auto">
-                        <div class="bg-slate-950/60 px-4 py-3 rounded-xl border border-slate-800">
-                            <div class="text-[10px] uppercase font-bold text-slate-500">Платформа</div>
-                            <div class="text-sm font-semibold text-white mt-0.5">Windows 10 Mobile</div>
+                        <div class="bg-black/40 px-4 py-2.5 rounded-xl border border-slate-800">
+                            <div class="text-[10px] uppercase font-bold text-slate-400">Платформа</div>
+                            <div class="text-xs font-semibold text-white mt-0.5">Windows 10 Mobile</div>
                         </div>
-                        <div class="bg-slate-950/60 px-4 py-3 rounded-xl border border-slate-800">
-                            <div class="text-[10px] uppercase font-bold text-slate-500">Версия ОС</div>
-                            <div class="text-sm font-semibold text-tg-accent mt-0.5">Creators Update</div>
+                        <div class="bg-black/40 px-4 py-2.5 rounded-xl border border-slate-800">
+                            <div class="text-[10px] uppercase font-bold text-slate-400">Версия ОС</div>
+                            <div class="text-xs font-semibold text-tg-accent mt-0.5">Creators Update</div>
                         </div>
                     </div>
                 </div>
@@ -521,40 +526,40 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-20">
+    <section id="faq" class="py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-10">
                 <span class="text-xs font-bold uppercase tracking-wider text-tg-accent">Часто задаваемые вопросы</span>
-                <h2 class="text-3xl font-extrabold text-white mt-2">Вопросы и ответы</h2>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Вопросы и ответы</h2>
             </div>
 
-            <div class="space-y-4">
-                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex items-center justify-between font-semibold text-white text-sm hover:text-tg-accent transition-colors">
+            <div class="space-y-3">
+                <div class="glass-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between font-semibold text-white text-sm">
                         <span>Какие преимущества над Amugram, Unigram и Unogram?</span>
-                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
                     </button>
-                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-300 border-t border-slate-800/50 pt-3 leading-relaxed">
+                    <div class="faq-content hidden px-4 pb-4 text-xs text-slate-300 border-t border-slate-800/60 pt-3 leading-relaxed">
                         Пока никаких, так как разработка только началась.
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex items-center justify-between font-semibold text-white text-sm hover:text-tg-accent transition-colors">
+                <div class="glass-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between font-semibold text-white text-sm">
                         <span>Будут ли фоновые уведомления?</span>
-                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
                     </button>
-                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-300 border-t border-slate-800/50 pt-3 leading-relaxed">
+                    <div class="faq-content hidden px-4 pb-4 text-xs text-slate-300 border-t border-slate-800/60 pt-3 leading-relaxed">
                         Думаю не будет (мне лень).
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
-                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left flex items-center justify-between font-semibold text-white text-sm hover:text-tg-accent transition-colors">
+                <div class="glass-card overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between font-semibold text-white text-sm">
                         <span>Будут ли голосовые звонки?</span>
-                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400"></i>
                     </button>
-                    <div class="faq-content hidden px-5 pb-5 text-xs text-slate-300 border-t border-slate-800/50 pt-3 leading-relaxed">
+                    <div class="faq-content hidden px-4 pb-4 text-xs text-slate-300 border-t border-slate-800/60 pt-3 leading-relaxed">
                         Звонки будут, сейчас находятся в активной разработке.
                     </div>
                 </div>
@@ -565,30 +570,30 @@
     <!-- Authors Section -->
     <section id="authors" class="py-16 bg-slate-900/60 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-10">
                 <span class="text-xs font-bold uppercase tracking-wider text-tg-accent">Команда проекта</span>
-                <h2 class="text-3xl font-extrabold text-white mt-2">Авторы</h2>
-                <p class="text-slate-400 text-sm mt-2">Разработка ведется участниками форума 4PDA</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Авторы</h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2">Разработка ведется участниками форума 4PDA</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-                <a href="https://4pda.to/forum/index.php?showuser=12251536" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-2xl flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white font-bold text-lg shadow-md metro-accent-bg">
+                <a href="https://4pda.to/forum/index.php?showuser=12251536" target="_blank" rel="noopener noreferrer" class="glass-card p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg shrink-0">
                         <i data-lucide="lightbulb" class="w-6 h-6"></i>
                     </div>
                     <div>
                         <div class="text-xs font-semibold text-tg-accent uppercase tracking-wider">Автор идеи</div>
-                        <div class="text-base font-bold text-white">Профиль 4PDA</div>
+                        <div class="text-sm font-bold text-white">Профиль 4PDA</div>
                     </div>
                 </a>
 
-                <a href="https://4pda.to/forum/index.php?showuser=12425611" target="_blank" rel="noopener noreferrer" class="glass-card p-6 rounded-2xl flex items-center gap-4 group">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-tg-blue to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md metro-accent-bg">
+                <a href="https://4pda.to/forum/index.php?showuser=12425611" target="_blank" rel="noopener noreferrer" class="glass-card p-5 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-tg-blue/20 text-tg-accent flex items-center justify-center font-bold text-lg shrink-0">
                         <i data-lucide="code-2" class="w-6 h-6"></i>
                     </div>
                     <div>
                         <div class="text-xs font-semibold text-tg-accent uppercase tracking-wider">Основной разработчик</div>
-                        <div class="text-base font-bold text-white">Профиль 4PDA</div>
+                        <div class="text-sm font-bold text-white">Профиль 4PDA</div>
                     </div>
                 </a>
             </div>
@@ -607,52 +612,43 @@
         </div>
     </footer>
 
-    <!-- Universal ES5-Compatible Interactive Script -->
+    <!-- ES5 Safe JavaScript -->
     <script>
-        function isWindows10MobileOrLegacyEdge() {
+        function isWindows10MobileOrLegacy() {
             var ua = navigator.userAgent || '';
-            var isWP = /Windows Phone|WPDesktop|Windows Mobile/i.test(ua);
-            var isLegacyEdge = /Edge\/(12|13|14|15|16|17|18)/i.test(ua);
-            var isTrident = /Trident/i.test(ua);
-            var isWinARM = /Windows NT 10\.0.*ARM/i.test(ua);
-            return isWP || isLegacyEdge || isTrident || isWinARM;
+            return /Windows Phone|WPDesktop|Windows Mobile|Edge\/(12|13|14|15|16|17|18)|Trident/i.test(ua);
         }
 
-        if (window.lucide) {
-            lucide.createIcons();
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            try { window.lucide.createIcons(); } catch(e){}
         }
 
-        function applyAutomaticViewMode() {
-            var body = document.body;
+        function checkDeviceMode() {
+            var isLegacy = isWindows10MobileOrLegacy();
             var badge = document.getElementById('deviceBadge');
-            var isLegacy = isWindows10MobileOrLegacyEdge();
-
+            
             if (isLegacy) {
-                body.classList.add('metro-mode');
-                if (badge) badge.classList.remove('hidden');
+                document.body.className += ' metro-mode';
+                if (badge) badge.style.display = 'inline-block';
                 setBubbleRadius(0);
                 var radiusSlider = document.getElementById('radiusSlider');
                 var radiusVal = document.getElementById('radiusVal');
                 if (radiusSlider) radiusSlider.value = 0;
                 if (radiusVal) radiusVal.textContent = '0px (Metro)';
-            } else {
-                body.classList.remove('metro-mode');
-                if (badge) badge.classList.add('hidden');
-                setBubbleRadius(8);
             }
         }
 
         window.onload = function() {
-            applyAutomaticViewMode();
+            checkDeviceMode();
         };
 
-        function toggleFaq(button) {
-            var content = button.nextElementSibling;
+        function toggleFaq(btn) {
+            var content = btn.nextElementSibling;
             if (content) {
-                if (content.classList.contains('hidden')) {
-                    content.classList.remove('hidden');
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
                 } else {
-                    content.classList.add('hidden');
+                    content.style.display = 'block';
                 }
             }
         }
@@ -664,49 +660,39 @@
             var sendBtn = document.getElementById('mockupSendBtn');
             if (sendBtn) sendBtn.style.backgroundColor = bubbleColor;
 
-            var rightBubble = document.getElementById('mockupBubbleRight');
-            if (rightBubble) rightBubble.style.backgroundColor = bubbleColor;
-            
-            var rightBubbles = document.querySelectorAll('.bg-\\[\\#2b5278\\]');
-            for (var i = 0; i < rightBubbles.length; i++) {
-                rightBubbles[i].style.backgroundColor = bubbleColor;
-            }
+            var r1 = document.getElementById('mockupBubbleRight1');
+            if (r1) r1.style.backgroundColor = bubbleColor;
         }
 
-        var fontSizeSlider = document.getElementById('fontSizeSlider');
-        var fontVal = document.getElementById('fontVal');
-        if (fontSizeSlider) {
-            fontSizeSlider.addEventListener('input', function(e) {
-                var val = e.target.value;
+        var fontSlider = document.getElementById('fontSizeSlider');
+        if (fontSlider) {
+            fontSlider.oninput = function() {
+                var val = fontSlider.value;
+                var fontVal = document.getElementById('fontVal');
                 if (fontVal) fontVal.textContent = val + 'px';
-                var chatBody = document.querySelector('#mockupHeader').nextElementSibling;
+                var chatBody = document.getElementById('mockupChatBody');
                 if (chatBody) chatBody.style.fontSize = val + 'px';
-            });
+            };
         }
-
-        var radiusSlider = document.getElementById('radiusSlider');
-        var radiusVal = document.getElementById('radiusVal');
 
         function setBubbleRadius(val) {
-            var leftBubbles = document.querySelectorAll('#mockupBubbleLeft, .bg-\\[\\#182533\\]');
-            var rightBubbles = document.querySelectorAll('#mockupBubbleRight, .bg-\\[\\#2b5278\\]');
+            var l1 = document.getElementById('mockupBubbleLeft1');
+            var l2 = document.getElementById('mockupBubbleLeft2');
+            var r1 = document.getElementById('mockupBubbleRight1');
 
-            for (var i = 0; i < leftBubbles.length; i++) {
-                leftBubbles[i].style.borderRadius = val + 'px';
-                leftBubbles[i].style.borderTopLeftRadius = '0px';
-            }
-            for (var j = 0; j < rightBubbles.length; j++) {
-                rightBubbles[j].style.borderRadius = val + 'px';
-                rightBubbles[j].style.borderTopRightRadius = '0px';
-            }
+            if (l1) l1.style.borderRadius = val + 'px';
+            if (l2) l2.style.borderRadius = val + 'px';
+            if (r1) r1.style.borderRadius = val + 'px';
         }
 
-        if (radiusSlider) {
-            radiusSlider.addEventListener('input', function(e) {
-                var val = e.target.value;
+        var radSlider = document.getElementById('radiusSlider');
+        if (radSlider) {
+            radSlider.oninput = function() {
+                var val = radSlider.value;
+                var radiusVal = document.getElementById('radiusVal');
                 if (radiusVal) radiusVal.textContent = val + 'px';
                 setBubbleRadius(val);
-            });
+            };
         }
     </script>
 </body>
